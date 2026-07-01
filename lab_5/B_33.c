@@ -18,6 +18,7 @@ void sortstring(char word[])
         }   
     }   
 }
+
 int main()
 {
     int num_words;
@@ -36,7 +37,7 @@ int main()
     int random = rand() % num_words;
 
     char found_word[50];
-    
+
     strcpy(found_word, words[random]);
     
     printf("\nRandom Word: %s\n", found_word);
@@ -55,34 +56,6 @@ int main()
     sortstring(anagram);
     sortstring(found_word);
 
-    // else
-    // {
-    //     for (int i = 0; i < anagram_length - 1; i++)
-    //     {
-    //         for (int j = i + 1 ; j < anagram_length; j++)
-    //         {
-    //             if (anagram[i] > anagram[j])
-    //             {   
-    //                 char temp1 = anagram[i];
-    //                 anagram[i] = anagram[j];
-    //                 anagram[j] = temp1;
-    //             }
-    //         }
-    //     }
-        
-    //     for (int i = 0; i < anagram_length - 1; i++)
-    //     {
-    //         for (int j = i + 1 ; j < anagram_length; j++)
-    //         {
-    //             if (found_word[i] > found_word[j])
-    //             {   
-    //                 char temp2 = found_word[i];
-    //                 found_word[i] = found_word[j];
-    //                 found_word[j] = temp2;
-    //             }
-    //         }
-    //     }
-    // }
     if (strcmp(anagram , found_word) == 0)
     {
         printf("\nValid Anagram\n");
