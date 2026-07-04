@@ -33,7 +33,7 @@ int main()
     printf("Roll No    : %d\n", ptr->roll_no);
     printf("Name       : %s\n", ptr->name);
     printf("Branch     : %s\n", ptr->branch);
-    printf("Batch No   : %d\n", ptr->batch_no); 
+    printf("Batch No   : %d\n", ptr->batch_no);  
        
        return 0;
     
