@@ -22,7 +22,7 @@ void insertElement(int x)
 
         newNode->link = NULL;
 
-        if(first == NULL)
+        if(first == NULL)   
         {
             first = newNode;
             save = newNode;
