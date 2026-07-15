@@ -47,7 +47,6 @@ void reverseLink()
     struct Node *save = first;
     struct Node *next = NULL;
 
-
     while (save != NULL)
     {
         next = save->link;
