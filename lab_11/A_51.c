@@ -304,7 +304,6 @@ void mainmenu()
         break;
     }
 }
-
 int main()
 {
     while (1)
