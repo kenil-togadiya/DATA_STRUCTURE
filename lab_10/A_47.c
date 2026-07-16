@@ -1,5 +1,5 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 struct Node
 {
@@ -9,86 +9,118 @@ struct Node
 
 struct Node *first = NULL;
 
-void insertNode(int x)
+void insert_at_last(int x)
 {
-    struct Node *save,*newNode;
+    struct Node *newnode;
 
-    for (int i = 0; i < x; i++)
+    newnode = (struct Node *)malloc(sizeof(struct Node));
+
+    newnode->info = x;
+    newnode->link = NULL;
+
+    if (first == NULL)
     {
-        newNode = (struct Node *)malloc(sizeof(struct Node));
+        first = newnode;
+        return;
+    }
 
-        if (newNode == NULL)
+    struct Node *save;
+    save = first;
+
+    while (save->link != NULL)
+    {
+        save = save->link;
+    }
+
+    save->link = newnode;
+}
+
+void sort()
+{
+    struct Node *save, *next = NULL , *pred;
+    
+
+    for (save = first; save != NULL; save = save->link)
+    {
+        for (next = save->link; next != NULL; next = next->link)
         {
-            printf("Memory Allocation Failed!\n");
-            return ;
-        }
-
-        printf("Enter the new Element : ");
-        scanf("%d",&newNode->info);
-
-        newNode->link = NULL;
-
-        if (first == NULL)
-        {
-            first = newNode;
-            save = first; 
-        }
-        else
-        {
-            save->link = newNode;
-            save = newNode;
+            if (save->info > next->info)
+            {
+                int temp = save->info;
+                save->info = next->info;
+                next->info = temp;
+            }
         }
     }
 }
 
-void sortElement(int x)
+void sort_by_address()
 {
-    struct Node *save,*prev;
-    int temp;
+    struct Node *save  , *pred;
 
-    for (int i = 0; i < x - 1; i++)
+    for(pred = first ; pred != NULL ; pred = pred->link)
     {
-        prev = first;
-        save = first->link;
-
-        while (save != NULL)
+        for(save=pred->link ; save != NULL ; save = save->link)
         {
-            if(save->info < prev->info)
+            if(pred->info > save->info)
             {
-                temp = prev->info;
-                prev->info = save->info;
-                save->info = temp; 
+                if(pred == first)
+                {
+                    pred->link = save->link;
+                    save->link = pred;
+                    first = save;
+                }
+                else
+                {
+                    struct Node *temp = first;
+                    while(temp->link != pred)
+                    {
+                        temp = temp->link;
+                    }
+                    temp->link = save;
+                    pred->link = save->link;
+                    save->link = pred;
+                }
             }
-            prev = save;
-            save = save->link;
         }
     }
 }
 
 void display()
 {
-    struct Node *save;
+    struct Node *temp;
 
-    save = first;
+    temp = first;
 
-    while (save->link != NULL)
+    while (temp->link != NULL)
     {
-        printf("%d -> ",save->info);
-        save = save->link;
+        printf("%d -> ", temp->info);
+        temp = temp->link;
     }
-    printf("%d",save->info);
-    
+    printf("%d", temp->info);
+
 }
 
 int main()
 {
-    int num;
 
-    printf("Enter the size of total list : ");
-    scanf("%d",&num);
+    int x, n;
 
-    insertNode(num);
-    sortElement(num);
+    printf("Enter a number of node: ");
+    scanf("%d", &n);
+
+    for (int i = 0; i < n; i++)
+    {
+        printf("Enter a info portion of a node: ");
+        scanf("%d", &x);
+        insert_at_last(x);
+    }
+    printf("Using info protion short...\n");
+    sort();
+    display();
+    printf("\n");
+    printf("Using address protion short...\n");
+    sort_by_address();
     display();
 
     return 0;
