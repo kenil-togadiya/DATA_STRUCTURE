@@ -7,12 +7,13 @@ struct Node
     struct Node *link;
 };
 
-struct Node *first;
+struct Node *first = NULL;
+struct Node *last = NULL;
 
 void insertAtLast(int x)
 {
     struct Node *newNode;
-    struct Node *save;
+    //struct Node *save;
 
     newNode = (struct Node *)malloc(sizeof(struct Node));
 
@@ -21,18 +22,19 @@ void insertAtLast(int x)
 
     if (first == NULL)
     {
-        first = newNode;
+        first = last = newNode;
         return;
     }
 
-    save = first;
+    //save = first;
 
-    while (save->link != NULL)
-    {
-        save = save->link;
-    }
+    // while (save->link != NULL)
+    // {
+    //     save = save->link;
+    // }
     
-    save->link = newNode;
+    last->link = newNode;
+    last = newNode;
 }
 
 int operationGCD(int n1,int n2)

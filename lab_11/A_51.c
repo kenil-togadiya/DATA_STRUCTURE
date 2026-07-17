@@ -264,6 +264,7 @@ void mainmenu()
     printf("\n5. Delete a node from specified position");
     printf("\n6. Delete a node from end position");
     printf("\n7. Display all nodes\n");
+    printf("\n8. Exit\n");
 
     printf("\nEnter your Choise : ");
     scanf("%d", &choise);
@@ -298,6 +299,9 @@ void mainmenu()
     case 7:
         display();
         break;
+
+    case 8:
+        exit(0);        
 
     default:
         printf("Invalid Choise!\nPlease Try Again!\n");
