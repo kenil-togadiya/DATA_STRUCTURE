@@ -41,48 +41,46 @@ void insertNode(int x)
     }
 }
 
-void swapPosition(int start, int end)
+void swapPosition(int start, int end, int count)
 {
+    int fromLast = count - end;
+    fromLast++;
 
     struct Node *prevSave = NULL;
     struct Node *save = first;
     struct Node *prevLast = NULL;
     struct Node *last = first;
-    struct Node *tempPointer;
-
-    tempPointer = first;
 
     int countStrat = 1;
     int countEnd = 1;
 
-    while (tempPointer->link != NULL)
+    while (countStrat != start)
     {
-        if (countStrat != start)
+        if (prevSave == NULL)
         {
-            if (prevSave == NULL)
-            {
-                prevSave = first;
-            }
-            else
-            {
-                prevSave = prevSave->link;
-            }
-            countStrat++;
-            save = save->link;
+            prevSave = first;
         }
         else
         {
-            if (prevLast == NULL)
-            {
-                prevLast = first;
-            }
-            else
-            {
-                prevLast = prevLast->link;
-            }
-            last = last->link;
+            prevSave = prevSave->link;
         }
-        tempPointer = tempPointer->link;
+
+        save = save->link;
+        countStrat++;
+    }
+
+    while (countEnd != fromLast)
+    {
+        if (prevLast == NULL)
+        {
+            prevLast = first;
+        }
+        else
+        {
+            prevLast = prevLast->link;
+        }
+        last = last->link;
+        countEnd++;
     }
 
     if (prevSave != NULL)
@@ -136,7 +134,7 @@ int main()
     printf("Enter the number of k node from End : ");
     scanf("%d", &end);
 
-    swapPosition(start, end);
+    swapPosition(start, end, num);
 
     display();
 

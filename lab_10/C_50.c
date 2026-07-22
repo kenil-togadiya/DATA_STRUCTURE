@@ -40,23 +40,25 @@ void swapTwoNode()
     struct Node *prev = NULL;
     struct Node *curr = first;
     struct Node *next;
-    struct Node *tempNode;
-
-    if (first == NULL || first->link == NULL)
-    {
-        return ;
-    }
-    
 
     while (curr != NULL && curr->link != NULL)
     {
-        tempNode = (struct Node *)malloc(sizeof(struct Node));
+        next = curr->link;
 
-        tempNode->link = NULL;
-
-        tempNode->link = curr->link;
+        if (prev == NULL)
+        {
+            first = next;
+        }
+        else
+        {
+            prev->link = next;
+        }
+        
         curr->link = next->link;
-        next->link = tempNode->link;
+        next->link = curr;
+
+        prev = curr;
+        curr = curr->link;   
     }
 }
 
